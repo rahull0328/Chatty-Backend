@@ -1,11 +1,18 @@
-import { generteToken } from "../lib/utils";
-import User from "../models/user.model";
+import { generteToken } from "../lib/utils.js";
+import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 
 export const signup = async (req, res) => {
   const { fullname, email, password } = req.body;
   try {
-    //password hasing
+    //check if the required fields are provided
+    if (!fullname || !email || !password) {
+      return res
+        .status(400)
+        .json({ message: "Please provide all required fields" });
+    }
+
+    //password hashing
     if (password.length < 6) {
       return res
         .status(400)
@@ -38,13 +45,40 @@ export const signup = async (req, res) => {
       res.status(400).json({ message: "Invalid User Data" });
     }
   } catch (error) {
-    console.log("Error in signu cntroller: ", error.message);
+    console.log("Error in signup cntroller: ", error.message);
     res.status(500).json({ message: "Internal Server Error!" });
   }
 };
 
-export const login = (req, res) => {
-  res.send("login route");
+export const login = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+
+    //finding email from database
+    const fetchUser = await User.findOne({email});
+
+    //checking if the user is existing or not
+    if (!fetchUser) {
+      res.status(400).json({ message: "Invalid Creds!" });
+    }
+
+    //comparing password given by user and same in the database
+    const isPasswordCorrect = await bcrypt.compare(password, fetchUser.password);
+    if(!isPasswordCorrect) {
+      res.status(400).json({ message: "Invalid Creds!" });
+    }
+    
+    //if user exists then login the user
+    generteToken(fetchUser._id, res);
+    res.status(200).json({
+      _id: fetchUser._id,
+      fullname: fetchUser.fullname,
+      email: fetchUser.email,
+      profilePic: fetchUser.profilePic,
+    })
+  } catch (error) {
+    
+  }
 };
 
 export const logout = (req, res) => {
