@@ -67,7 +67,7 @@ export const login = async (req, res) => {
     if(!isPasswordCorrect) {
       res.status(400).json({ message: "Invalid Creds!" });
     }
-    
+
     //if user exists then login the user
     generteToken(fetchUser._id, res);
     res.status(200).json({
@@ -77,10 +77,17 @@ export const login = async (req, res) => {
       profilePic: fetchUser.profilePic,
     })
   } catch (error) {
-    
+    console.log("Error in Login Controller: ", error.message);
+    res.status(500).json({ message: "Internal Server Error!" });
   }
 };
 
 export const logout = (req, res) => {
-  res.send("logout route");
+  try {
+    res.cookie("jwt", "", {maxAge: 0})
+    res.status(200).json({ message: "Logged Out Successfully!" });
+  } catch (error) {
+    console.log("Error in Logout Controller:", error.message);
+    res.status(500).json({ message: "Internal Server Error!" });
+  }
 };
