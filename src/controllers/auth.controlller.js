@@ -1,5 +1,5 @@
 import cloudinary from "../lib/cloudinary.js";
-import { generteToken } from "../lib/utils.js";
+import { generateToken } from "../lib/utils.js";
 import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 
@@ -33,7 +33,7 @@ export const signup = async (req, res) => {
       password: hashedPassword,
     });
     if (newUser) {
-      generteToken(newUser._id, res);
+      generateToken(newUser._id, res);
       await newUser.save();
 
       res.status(200).json({
@@ -72,7 +72,7 @@ export const login = async (req, res) => {
     }
 
     //if user exists then login the user
-    generteToken(fetchUser._id, res);
+    generateToken(fetchUser._id, res);
     res.status(200).json({
       _id: fetchUser._id,
       fullname: fetchUser.fullname,
