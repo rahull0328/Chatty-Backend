@@ -56,7 +56,7 @@ chatty-backend/
 │── controllers/   # API controllers
 │── routes/        # Express routes
 │── config/        # Database configuration
-│── server.js      # Entry point
+│── index.js      # Entry point
 │── .env           # Environment variables
 │── package.json   # Dependencies
 ```
