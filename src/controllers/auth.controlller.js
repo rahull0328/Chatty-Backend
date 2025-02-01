@@ -59,7 +59,7 @@ export const login = async (req, res) => {
 
     //checking if the user is existing or not
     if (!fetchUser) {
-      res.status(400).json({ message: "Invalid Creds!" });
+      return res.status(400).json({ message: "Invalid Creds!" });
     }
 
     //comparing password given by user and same in the database
