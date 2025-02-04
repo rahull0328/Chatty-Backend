@@ -68,7 +68,7 @@ export const login = async (req, res) => {
       fetchUser.password
     );
     if (!isPasswordCorrect) {
-      res.status(400).json({ message: "Invalid Creds!" });
+      return res.status(400).json({ message: "Invalid Creds!" });
     }
 
     //if user exists then login the user
