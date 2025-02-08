@@ -11,11 +11,14 @@ const io = new Server(server, {
   },
 });
 
-io.on("cconnection", (socket) => {
-    console.log("A user connected", socket.id);
+//used to store online users
+const userSocketMap = {};
 
-    socket.on("disconnect", () => {
-        console.log("User disconnected", socket.id);
-    })
-})
+io.on("connection", (socket) => {
+  console.log("A user connected", socket.id);
+
+  socket.on("disconnect", () => {
+    console.log("A User disconnected", socket.id);
+  });
+});
 export { io, app, server };
