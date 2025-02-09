@@ -11,8 +11,12 @@ const io = new Server(server, {
   },
 });
 
+export function getReceiverSocketId(userId) {
+  return userSocketMap[userId];
+};
+
 //used to store online users
-const userSocketMap = {};
+const userSocketMap = {}; //{userId: socketId}
 
 io.on("connection", (socket) => {
   console.log("A user connected", socket.id);
@@ -29,4 +33,5 @@ io.on("connection", (socket) => {
     io.emit("getOnlineUsers", Object.keys(userSocketMap));
   });
 });
+
 export { io, app, server };
