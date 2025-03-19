@@ -1,4 +1,4 @@
-# Chatty Backend
+# Chatty - Backend
 
 Chatty Backend provides the backend APIs for a real-time chat application, handling user authentication, messaging, and real-time updates using `socket.io`. It is built with `Node.js` and `Express.js`, utilizing `MongoDB` as the database.
 
@@ -28,7 +28,7 @@ Chatty Backend provides the backend APIs for a real-time chat application, handl
 
 2. Install dependencies:
    ```sh
-   npm install
+   npm install i
    ```
 
 3. Set up environment variables:
@@ -62,7 +62,13 @@ chatty-backend/
 ```
 
 ## Contributing
-Pull requests are welcome! Feel free to contribute to improve the project.
+We welcome contributions to the Chatty project! To contribute:
+
+- 🍴 Fork the repository.
+- 🌱 Create a new branch (git checkout -b feature/your-feature).
+- 💻 Commit your changes (git commit -am 'Add new feature').
+- 📤 Push to your branch (git push origin feature/your-feature).
+- 🤝 Open a pull request.
 
 ## License
 This project is licensed under the MIT License.
