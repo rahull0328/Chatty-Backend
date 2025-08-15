@@ -75,4 +75,14 @@ This project is licensed under the MIT License.
 
 ---
 
-Enjoy building with Chatty Backend! 🚀
+
+## 👨‍💻 Author
+
+**Rahul Mehta**  
+ Full-Stack Developer
+
+- GitHub: [@rahull0328](https://github.com/rahull0328)  
+- LinkedIn: [Rahul Mehta](https://www.linkedin.com/in/rahull0328)  
+---
+Enjoy building with Chatty Backend! 
+---
